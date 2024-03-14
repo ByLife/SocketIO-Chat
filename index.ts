@@ -1,7 +1,7 @@
 import socket, { Server } from 'socket.io';
 import sqlite3 from 'sqlite3';
 
-const io: Server = new socket.Server(3000);
+const io: Server = new socket.Server(4566);
 const db = new sqlite3.Database('db.sqlite3');
 
 interface Message {
