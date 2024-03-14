@@ -1,7 +1,14 @@
 import socket, { Server } from 'socket.io';
 import sqlite3 from 'sqlite3';
+import cors from 'cors';
 
-const io: Server = new socket.Server(4566);
+const io = new socket.Server(4566, {
+    cors: {
+      origin: "*", 
+      methods: ["GET", "POST"], 
+    }
+  });
+
 const db = new sqlite3.Database('db.sqlite3');
 
 interface Message {
@@ -36,3 +43,7 @@ io.on('connection', (socket) => {
     io.emit('message', {username: users.map((user) => user.username) , message:  message});
   });
 });
+
+
+// allow all origins and cors
+
